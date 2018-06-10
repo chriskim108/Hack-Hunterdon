@@ -15,17 +15,19 @@
         </button>
                  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">        
-                <!-- When the user logins -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="dashboard.html">About<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="group.html">Group</a>
+                </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="dashboard.html">Dashboard <span class="sr-only">(current)</span></a>
-                </li>
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                  </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="groups.html">Groups</a>
+                  <a class="nav-link" href="#">Pricing</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="portfolio.html">Portfolio</a>
-                </li> 
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
@@ -103,11 +105,68 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>                
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </section>
     
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 12;
+        Chart.defaults.global.defaultFontColor = '#777';
+        
+        let massPopChart = new Chart(myChart, {
+            type:'pie',
+            data:{
+                labels:['Apple','Samsung','Amazon','Bank of America'],
+                datasets:[{
+                    label:'Money spent',
+                    data:[
+                    55,
+                    96,
+                    75,
+                    54
+                    ],
+                    backgroundColor:[
+                    'rgb(244, 78, 66)',
+                    'rgb(62, 178, 62)',
+                    'rgb(255, 238, 10)',
+                    'rgb(166, 230, 237)'
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                
+                }]
+            },
+            options:{
+                title:{
+                    display:true,
+                    text:'Percantage Invested',
+                    fontSize:25
+                },
+                legend:{
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }
+                },
+                layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                tooltips:{
+                    enabled:true
+                }
+            }
+        });
+    </script>
 </body>
 </html>
