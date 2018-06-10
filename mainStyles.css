@@ -1,0 +1,57 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+.navbar{
+    background-color: #0F51A0;
+}
+.topPart{
+    border: 1px solid black;
+    padding:10px;
+    background-color: white;
+}
+.topNumbers{
+    font-weight: bold;
+}
+.nav-link{
+    font-size: 20px;
+}
+.page-footer{
+    background-color: #0F51A0
+}
+.tableHistory{
+    padding: 40px;
+}
+
+
+
+
+
+
+/* for homepage */
+.page1{
+    height: 300px;
+    width: 100%;
+    background-color: #0F51A0;
+    padding-top: 40px;
+}
+.page1 h1, .page1 p{
+    color: white;
+}
+.homeIconImages{
+    margin-top: 50px;
+    height: 200px;
+    width: 300px;
+}
+.newsletterSection{
+    height: 500px;
+    width: 100%;
+    background-color: #B5DFF5;
+    margin-top: 100px;
+}
+.meet-the-team{
+    height: 400px;
+    width: 250px;
+    margin-top: 50px;
+}
+

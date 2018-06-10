@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CollaboTrade</title> 
+    <link href="mainStyles.css" rel="stylesheet" > 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#" style="background-color: #0F51A0">
+        <img src="images/collabTradeLogo.png" style="height: 100px;width: 175px;">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+      </button>
+              
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Find Stocks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Portfolio</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a href="#">
+          <img src="images/userIcon.png" style="height: 60px;width: 60px; margin-left: 50px;">
+        </a>
+      </div>                
+    </nav>
+
+    <center>
+      <div style="padding:90px;background-color:#B5DFF5; ">           
+          <div>
+            <h1>
+              Overview
+            </h1>
+            <hr>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <div class="topPart">
+            <h3>
+              Total Holding
+            </h3>
+            <hr>
+            <p class="topNumbers">
+              $10,000
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="topPart">
+            <h3>
+              Estimated Profit
+            </h3>
+            <hr>
+            <p class="topNumbers">
+              $2,000
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="topPart">
+            <h3>
+              Total Investment
+            </h3>
+            <hr>
+            <p class="topNumbers">
+              $100,000
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="topPart">
+            <h3>
+              Groups
+            </h3>
+            <hr>
+            <p class="topNumbers">
+              5
+            </p>
+          </div>
+        </div>
+      </div>  
+
+    <center>
+        <div style="margin-top: 50px;">
+            <canvas id="myChart" width="850" height="600"></canvas>
+        </div>
+    </center>
+
+      </div>
+    </center>
+  </div>
+
+    <div class="container tableHistory">
+            <h2>Stocks </h2>       
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Group</th>
+                  <th>Stock</th>
+                  <th>Set Price</th>
+                  <th>Current Price</th>
+                  <th>Quantity</th>
+                  <th>Expiration</th>
+                  <th>Group manager</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>04/28/2018</td>
+                  <td>SMSN</td>
+                  <td>SMSN</td>
+                  <td>1145.00</td>
+                  <td>1233.00</td>
+                  <td>0.28</td>
+                  <td>12 month</td>
+                  <td>Christopher</td>
+                </tr>
+                <tr>
+                  <td>04/22/2018</td>
+                  <td>AAPL</td>
+                  <td>AAPL</td>
+                  <td>158.23</td>
+                  <td>162.32</td>
+                  <td>3.18</td>
+                  <td>6 month</td>
+                  <td>Nadim</td>
+                </tr>
+                <tr>
+                  <td>04/16/2018</td>
+                  <td>AMZN</td>
+                  <td>AMZN</td>
+                  <td>1478.00</td>
+                  <td>1572.62</td>
+                  <td>0.36</td>
+                  <td>3 month</td>
+                  <td>Man</td>
+                </tr>
+                <tr>
+                  <td>04/08/2018</td>
+                  <td>BAC</td>
+                  <td>BAC</td>
+                  <td>29.57</td>
+                  <td>30.15</td>
+                  <td>10.88</td>
+                  <td>3 month</td>
+                  <td>Grace</td>
+                </tr>
+                <tr>
+                  <td>03/22/2018</td>
+                  <td>CS</td>
+                  <td>CS/td>
+                  <td>16.42</td>
+                  <td>16.97</td>
+                  <td>12.98</td>
+                  <td>6 month</td>
+                  <td>Jackie</td>
+                </tr>
+                <tr>
+                  <td>03/17/2018</td>
+                  <td>DWDP</td>
+                  <td>DWDP</td>
+                  <td></td>
+                  <td>64.32</td>
+                  <td>63.21</td>
+                  <td>12 month</td>
+                  <td>Sparky</td>
+                </tr>
+                <tr>
+                  <td>04/28/2018</td>
+                  <td>HPHW</td>
+                  <td>HPHW</td>
+                  <td>0.08</td>
+                  <td>0.09</td>
+                  <td>320.78</td>
+                  <td>3 month</td>
+                  <td>Kelly</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+<!--Footer-->
+<footer class="page-footer font-small blue pt-4 mt-4">
+    
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright: CollabTrade
+            
+        </div>
+        <!--/.Copyright-->
+    
+    </footer>
+    <!--/.Footer-->
+<script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+    
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+     
+        let massPopChart = new Chart(myChart, {
+          type:'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+          data:{
+            labels:['Apple', 'Samsung', 'Amazon', 'Bank of America', 'Credit Suisse', 'DowDuPont Inc', 'Hooper Holmes, Inc.'],
+            datasets:[{
+              label:'Stock Percentage',
+              data:[
+                15,
+                10,
+                30,
+                5, 
+                20,
+                8,
+                12
+              ],
+              //backgroundColor:'green',
+              backgroundColor:[
+                '#0D47A1',
+                '#1565C0',
+                'rgba(216, 119, 22, 0.8)',
+                'rgba(119, 22, 216, 0.8)',
+                'rgba(216, 216, 22, 0.8)',
+                'rgba(22, 119, 216, 0.8)',
+                'rgba(22, 216, 22,  0.8)'
+              ],
+              borderWidth:2,
+              borderColor:'#777',
+              hoverBorderWidth:3,
+              hoverBorderColor:'#000'
+            }]
+          },
+          options:{
+            responsive: false,
+            title:{
+              display:true,
+              text:'Percentage Invested',
+              fontSize:50,
+              fontColor:'black',
+              defaultFontFamily:'Helvetica'
+            },
+            legend:{
+              display:true,
+              position:'right',
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            layout:{
+              padding:{
+                left:50,
+                right:0,
+                bottom:0,
+                top:0
+              }
+            },
+            tooltips:{
+              enabled:true,
+              callbacks: {
+    label: function(tooltipItem, data) {
+      //get the concerned dataset
+      var dataset = data.datasets[tooltipItem.datasetIndex];
+      //calculate the total of this data set
+      var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+        return previousValue + currentValue;
+      });
+      //get the current items value
+      var currentValue = dataset.data[tooltipItem.index];
+      //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
+      var precentage = Math.floor(((currentValue/total) * 100)+0.5);
+
+      return precentage + "%";
+    }
+  }
+}
+}
+});
+      </script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CollaboTrade</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>	
+<body>
+	
+    <div class="container">
+
+        <h1>Form Group</h1>
+        <span id="countIns"></span>
+
+        <h2 id="stockInformation"></h2>
+        <span id="insTrans"></span>
+        <hr>
+
+        <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+
+        <label for="nameOfStock" class="col-lg-2 control-label">Name of Stock</label>
+        <input id="nameOfStock" type="text">
+
+        <label for="buyPrice" class="col-lg-2 control-label">Buy Price</label>
+        <input id="buyPrice" type="text">
+
+        <label for="numberOfMember" class="col-lg-2 control-label">Number of Members</label>
+        <input id="numberOfMember" type="text">
+
+        <button id="button">Submit</button>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+
+
+
+
+    <script>
+        // If web3 is not defined then we will use 
+        if (typeof web3 !== 'undefined') {
+            // Then we will use this as the provider   
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            //If it is undefined then we can manually provide the provider
+           web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        // When we run `testrpc` we get provided 10 accounts and we want to use the first one
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        // THIS NEEDS TO CHANGE IF WE REDEVELOP
+        var CoursetroContract = web3.eth.contract(
+			[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_numberOfMember",
+				"type": "uint256"
+			},
+			{
+				"name": "_nameOfStock",
+				"type": "bytes16"
+			},
+			{
+				"name": "_buyPrice",
+				"type": "bytes16"
+			}
+		],
+		"name": "setInstructor",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "nameOfStock",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "buyPrice",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "numberOfMember",
+				"type": "uint256"
+			}
+		],
+		"name": "stockInfo",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "countStockData",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getStock",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "bytes16"
+			},
+			{
+				"name": "",
+				"type": "bytes16"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getStocks",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "stockAccts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+        )
+        // 
+
+        // WE NEED TO CHANGE THIS IF WE REDEVELOP
+        var Coursetro = CoursetroContract.at('0xec3ccff8f60786d1e8b1b982a90f80dac42f4d39');        
+        // 
+
+        // Checking if we can get access
+        // console.log(Coursetro);
+
+        // var stockEvent = Coursetro.Instructor();
+        var stockEvent = Coursetro.stockInfo({}, 'latest');
+
+        // Make an array
+        var myArray = [];
+
+        function screenRender(arrayValue){
+            console.log("THE FUNCTION IS WORKING!!!!");
+            console.log(arrayValue);
+            console.log("CHECK IT OVER HERE!!!")
+        }
+
+        stockEvent.watch(function(error, result) {
+            if (!error) {
+                myArray.push(result);
+                screenRender(myArray);
+
+                if(result.blockHash != $("#insTrans").html()){
+                    $("#loader").hide();
+                }
+                $("#insTrans").html("Bloc hash: " + result.blockHash);
+                $("#stockInformation").html("You have formed a group to buy " + web3.toAscii(result.args.nameOfStock) + " stock and have " + web3.toAscii(result.args.buyPrice) + "" + result.args.numberOfMember + " members");				
+            } else {
+                 $("#loader").hide();
+                 console.log(error);
+            }
+        });
+
+        Coursetro.countStockData((err,res) => {
+            if(res){
+                $("#countIns").html(res.c + " Stocks");
+            }
+        });
+        
+        $("#button").click(function(){
+            Coursetro.setInstructor(web3.eth.defaultAccount, $("#numberOfMember").val(), $("#nameOfStock").val(), $("#buyPrice").val(), (err, res) => {
+                if(err){
+                    $("#loader").hide();
+                }
+            });
+            $("#loader").show();
+        });
+
+
+
+    </script>
+
+</body>
+</html>

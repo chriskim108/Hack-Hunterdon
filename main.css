@@ -1,0 +1,84 @@
+/* This is for the groups */
+body {
+    background-color:#F0F0F0;
+    padding: 2em;
+    font-family: 'Raleway','Source Sans Pro', 'Arial';
+}
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+label {
+    display:block;
+    margin-bottom:10px;
+}
+input {
+    padding:10px;
+    width: 50%;
+    margin-bottom: 1em;
+}
+button {
+    margin: 2em 0;
+    padding: 1em 4em;
+    display:block;
+}
+
+#instructor {
+    padding:1em;
+    background-color:#fff;
+    margin: 1em 0;
+}
+#loader {
+    width: 100px;
+    display:none;
+}
+
+/* APPLIED Styles */
+#group-form {
+    display: grid;
+    width:100vw;
+    height: 83vh;
+    /* grid-template-rows: repeat(11, 1fr) ; */
+    grid-template-columns: 1fr 1fr;
+}
+
+.header3{
+    text-decoration: underline;
+}
+
+.string {
+    width:25vw;
+    border-radius: 10px;
+}
+
+#all-groups{
+    list-style-type: none;
+}
+
+#group-form-left {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 0.2fr repeat(2, 3fr);
+}
+
+#group-form-right {
+    display: grid;
+    grid-template-rows: repeat(11, 1fr);
+    justify-content: center;
+}
+
+#button-create{
+    width: 15vw;
+    margin:3%;
+    border-radius: 10px;
+}
+
+.all-groups-item{
+    padding:10%;
+    font-size: 1.2em;
+    border-radius: 10px;
+    background-color: #B5DFF5;
+    margin:5%;
+}
+
+
