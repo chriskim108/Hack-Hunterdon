@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CollaboTrade</title>
-
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="./node_modules/web3/dist/web3.min.js"></script>
 
@@ -36,29 +35,52 @@
 
     </div>
 
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-
-
-
-
-
     <script>
-        // If web3 is not defined then we will use 
         if (typeof web3 !== 'undefined') {
-            // Then we will use this as the provider   
             web3 = new Web3(web3.currentProvider);
         } else {
-            //If it is undefined then we can manually provide the provider
            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
         }
 
-        // When we run `testrpc` we get provided 10 accounts and we want to use the first one
         web3.eth.defaultAccount = web3.eth.accounts[0];
 
         // THIS NEEDS TO CHANGE IF WE REDEVELOP
         var CoursetroContract = web3.eth.contract(
 			[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getStocks",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "stockAccts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [
@@ -79,33 +101,11 @@
 				"type": "bytes16"
 			}
 		],
-		"name": "setInstructor",
+		"name": "setStockInstruction",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "nameOfStock",
-				"type": "bytes16"
-			},
-			{
-				"indexed": false,
-				"name": "buyPrice",
-				"type": "bytes16"
-			},
-			{
-				"indexed": false,
-				"name": "numberOfMember",
-				"type": "uint256"
-			}
-		],
-		"name": "stockInfo",
-		"type": "event"
 	},
 	{
 		"constant": true,
@@ -149,59 +149,38 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getStocks",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
+		"anonymous": false,
 		"inputs": [
 			{
-				"name": "",
+				"indexed": false,
+				"name": "nameOfStock",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "buyPrice",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "numberOfMember",
 				"type": "uint256"
 			}
 		],
-		"name": "stockAccts",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+		"name": "stockInfo",
+		"type": "event"
 	}
 ]
         )
-        // 
 
-        // WE NEED TO CHANGE THIS IF WE REDEVELOP
-        var Coursetro = CoursetroContract.at('0xec3ccff8f60786d1e8b1b982a90f80dac42f4d39');        
-        // 
+        var Coursetro = CoursetroContract.at('0xe87ccda725eced790f73e4ba3e5888fd06bd1bd2');        
 
-        // Checking if we can get access
-        // console.log(Coursetro);
-
-        // var stockEvent = Coursetro.Instructor();
         var stockEvent = Coursetro.stockInfo({}, 'latest');
 
-        // Make an array
         var myArray = [];
 
         function screenRender(arrayValue){
-            console.log("THE FUNCTION IS WORKING!!!!");
             console.log(arrayValue);
-            console.log("CHECK IT OVER HERE!!!")
         }
 
         stockEvent.watch(function(error, result) {
@@ -227,17 +206,14 @@
         });
         
         $("#button").click(function(){
-            Coursetro.setInstructor(web3.eth.defaultAccount, $("#numberOfMember").val(), $("#nameOfStock").val(), $("#buyPrice").val(), (err, res) => {
+            Coursetro.setStockInstruction(web3.eth.defaultAccount, $("#numberOfMember").val(), $("#nameOfStock").val(), $("#buyPrice").val(), (err, res) => {
                 if(err){
                     $("#loader").hide();
                 }
             });
             $("#loader").show();
         });
-
-
-
     </script>
-
 </body>
 </html>
+
